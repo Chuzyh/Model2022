@@ -1,43 +1,10 @@
 #include<bits/stdc++.h>
 using namespace std;
+#include "geometry.h"
 
-const double pi=acos(-1);
-const int N=20;
-const double eps=1e-8;
-struct point
-{
-    double x,y;
-}p[N],s[N],r[N],la[N];
-point operator +(point a,point b){return (point){a.x+b.x,a.y+b.y};}
-point operator -(point a,point b){return (point){a.x-b.x,a.y-b.y};}
-point operator *(point a,double b){return (point){a.x*b,a.y*b};}
-point operator /(point a,double b){return (point){a.x/b,a.y/b};}
-double cross(point a,point b){return a.x*b.y-a.y*b.x;}
-double dot(point a,point b){return a.x*b.x+a.y*b.y;}
-double len(point a){return sqrt(a.x*a.x+a.y*a.y);}
-double angle(point a,point b1,point b2)
-{
-    double A=len(b1-b2),B=len(a-b1),C=len(a-b2);
-    return acos((B*B+C*C-A*A)/(2*B*C));
-}
-point get_xy(double r,double theta)
-{
-    return (point){r*cos(theta),r*sin(theta)};
-}
-double rand_double(){return ((double)rand()/RAND_MAX-0.5)*2;}
+point p[N],s[N],r[N],la[N];
 const double sample[][2]={{0,0},{100,10},{98,40.10},{112,80.21},{105,119.75},{98,159.86},{112,199.96},{105,240.07},{98,280.17},{112,320.28}};
-void ask(int p0,int p1,int p2,int p3)
-{
-    cout<<"ask "<<p0<<' '<<p1<<' '<<p2<<' '<<p3<<endl;
-}
-void ask(int p0,int p1,int p2)
-{
-    cout<<"ask "<<p0<<' '<<p1<<' '<<p2<<endl;
-}
-void ask(int p0,int p1)
-{
-    cout<<"ask "<<p0<<' '<<p1<<endl;
-}
+
 double ang[N];
 void move(int p,point del)
 {
