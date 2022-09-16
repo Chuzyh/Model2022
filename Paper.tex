@@ -1,0 +1,190 @@
+\documentclass{ctexart}
+\usepackage{xcolor}
+\usepackage{setspace}
+\usepackage{tikz}
+\usepackage{ctex}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx} 
+\usepackage{subfigure}
+\usepackage{float}
+\usepackage{algorithm}  
+\usepackage{algorithmicx}  
+\usepackage{algpseudocode} 
+\usepackage{url}
+\usepackage{amsthm, amssymb, appendix, bm, graphicx, hyperref, mathrsfs}
+\usepackage{tabularx}
+\usepackage{booktabs} %需要加载宏包{booktabs}
+\usepackage{multirow}
+\usepackage{diagbox} % 加载宏包
+\usepackage{pifont}
+
+\usepackage{siunitx}
+\usepackage{listings}
+\usepackage{float}
+\pagestyle{plain}
+
+\usetikzlibrary{datavisualization}
+\usetikzlibrary{arrows,shapes,chains}
+\usepackage{listings}
+\lstset{language=C++}
+\lstset{breaklines}
+\lstset{extendedchars=false}
+\lstset{numbers=left}
+\geometry{a4paper,left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+\CTEXsetup[format={\Large\bfseries\centering}]{section}
+\tikzstyle{startstop} = [rectangle,rounded corners, minimum width=3cm,minimum height=1cm,text centered, text width=6cm,draw=black]
+\tikzstyle{io} = [trapezium, trapezium left angle = 70,trapezium right angle=110,minimum width=5cm,minimum height=1cm,text centered,draw=black,fill=white]
+\tikzstyle{process} = [rectangle,minimum width=3cm,minimum height=1cm,text centered,text width =3cm,text width=6cm,draw=black]
+\tikzstyle{decision} = [diamond,minimum width=3cm,minimum height=1cm,text centered,text width=6cm,aspect=2,draw=black,thin]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}  % Use Input in the format of Algorithm  
+\renewcommand{\algorithmicensure}{\textbf{Output:}} % Use Output in the format of Algorithm  
+\newcommand{\subsubsubsection}[1]{\paragraph{#1}\mbox{}\\}
+\setcounter{secnumdepth}{4} % how many sectioning levels to assign numbers to
+\setcounter{tocdepth}{4} % how many sectioning levels to show in ToC
+\begin{document}
+
+\section{模型假设}
+1. \quad 基于自身感知的高度信息，本文默认无人机均保持在同一个高度上飞行，即所有无人机在同一个平面上。
+
+2. \quad 假设第一问中的所有小问9架无人机都均匀分布在半径为100m的圆周上。
+
+
+\subsection{问题一模型的建立与求解}
+
+\subsubsection{极坐标系的建立}
+
+为了更加明确地标注出各编号无人机的标准位置，我们选用包含角度信息的极坐标系来进行刻画。由于被动接收信号的无人机仅能接收到方向信息，即角度，故极坐标系相比直角坐标系更易表达清晰。
+
+假设9架无人机(编号FY01$\sim$FY09)均匀分布在一个半径为100m的圆周上。以编号FY00的无人机作为坐标原点，编号FY00与编号FY01之间的连线作为X轴，建立极坐标系如下图。各个编号的标准坐标信息如下表：
+
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        无人机编号&极坐标(m,$^{\circ}$)&无人机编号&极坐标(m,$^{\circ}$)&无人机编号&极坐标(m,$^{\circ}$)\\
+        \hline
+        FY00&(0,0)&FY01&(100,0)&FY02&(100,40)\\
+        \hline
+        FY03&(100,80)&FY04&(100,120)&FY05&(100,160)\\
+        \hline
+        FY06&(100,200)&FY07&(100,240)&FY08&(100,280)\\
+        \hline
+        FY09&(100,320)& & & &\\    
+
+        \hline
+    \end{tabular}\\
+\end{center}
+\subsubsection{定位模型的建立}
+题目要求在已知未知定位无人机与任意两架发射源无人机间连线的夹角后，给出未知定位无人机当前的所在位置。由于发射源无人机的位置是无偏差的，故它们间的距离同样为已知信息。对该问题进行几何分析：
+
+图中A、B、C三点为已知位置的发射源无人机（A为原点），D点为需要求解的无人机的位置，其中，A、B和A、C间的距离均为半径r。已知的方向信息包含两个小角与小角组合形成的大角，实际有效信息仅含两个角度。为了方便计算，我们选择包含原点的角度$\alpha_1$、$\alpha_2$以及发射源无人机间的夹角$\alpha_3$进行分析。
+
+A、B、C将平面区域划分为4各部分，如下图，对每个部分的点分别建立定位模型。
+
+利用正弦定理及角度关系对$\Delta$ABD，$\Delta$ACD，$\Delta$BCD进行分析，分别列出下列等式：
+
+设$\angle ABD=\theta_1$，$\angle ACD=\theta_2$，$\angle ADB=\alpha_1$，$\angle ADC=\alpha_2$，$\angle BAC=\alpha_3$，AD=l。
+
+(1)若$\alpha_1$、$\alpha_2$之间不存在包含关系，即D点落在I、III区域，分为两种情况讨论：
+
+若D点落在I区域，如图，则:
+
+\begin{equation}
+    \left\{
+              \begin{array}{ll}
+                \theta_1+\theta_2=\alpha_3-(\alpha_1+\alpha_2)=\theta_0\\
+                \frac{sin\theta_1}{l}=\frac{sin\alpha_1}{r}=k_1\\
+                \frac{sin\theta_2}{l}=\frac{sin\alpha_2}{r}=k_2\\
+
+              \end{array}
+            \right.
+\end{equation}
+
+\[
+    \Rightarrow sin(\theta_0-\theta_1)=\frac{k_2}{k_1}sin\theta_1
+\]
+\[
+    \Rightarrow sin\theta_0 \cdot cos\theta_1-cos\theta_0 \cdot sin\theta_1=\frac{k_2}{k_1}sin\theta_1
+\]
+
+\[
+    \Rightarrow \theta_1=arctan(\frac{sin\theta_0}{\frac{sin\alpha_2}{sin\alpha_1}+cos\theta_0}),\theta_0=\alpha_3-(\alpha_1+\alpha_2)
+\]
+
+在求解过程中，如果发现等式无法计算或出现正无穷的情况，则考虑$\theta_1=90^{\circ}$。
+
+
+若D点落在III区域，如图，则：
+
+
+无论D点在$\Delta ABC$内部还是外部，所建立的方程保持不变。
+
+\begin{equation}
+    \left\{
+              \begin{array}{ll}
+                \theta_1+\theta_2=2\pi-(\alpha_1+\alpha_2+\alpha_3)\\
+                \frac{sin\theta_1}{l}={sin\alpha_1}{r}=k_1\\
+                \frac{sin\theta_2}{l}={sin\alpha_2}{r}=k_2\\
+
+              \end{array}
+            \right.
+\end{equation}
+\[
+    \Rightarrow \theta_1=arctan \frac{-sin(\alpha_1+\alpha_2+\alpha_3)}{\frac{sin\alpha_2}{sin\alpha_1}+cos(\alpha_1+\alpha_2+\alpha_3)}
+\]
+或$\theta_1=90^{\circ}$。
+
+(2)若$\alpha_1$、$\alpha_2$之间存在包含关系，即D点落在II、IV区域，两种可能性如图所示；
+
+
+当$\alpha_1 < \alpha_2$时:
+
+\begin{equation}
+    \left\{
+              \begin{array}{ll}
+                \theta_1-\theta_2=\alpha_2-(\alpha_1+\alpha_3)=\theta_0\\
+                \frac{sin\theta_1}{l}={sin\alpha_1}{r}=k_1\\
+                \frac{sin\theta_2}{l}={sin\alpha_2}{r}=k_2\\
+
+              \end{array}
+            \right.
+\end{equation}
+
+\[
+    \Rightarrow \theta_1=arctan\frac{sin\theta_0}{cos\theta_0-\frac{sin\alpha_2}{sin\alpha_1}}，\theta_0=\alpha_2-(\alpha_1+\alpha_3)
+\]
+或$\theta_1=90^{\circ}$。
+
+当$\alpha_1 > \alpha_2$时:
+
+\begin{equation}
+    \left\{
+              \begin{array}{ll}
+                \theta_2-\theta_1=\alpha_1-(\alpha_2+\alpha_3)=\theta_0\\
+                \frac{sin\theta_1}{l}={sin\alpha_1}{r}=k_1\\
+                \frac{sin\theta_2}{l}={sin\alpha_2}{r}=k_2\\
+
+              \end{array}
+            \right.
+\end{equation}
+
+\[
+    \Rightarrow \theta_1=arctan\frac{sin\theta_0}{\frac{sin\alpha_2}{sin\alpha_1}-cos\theta_0}，\theta_0=\alpha_1-(\alpha_2+\alpha_3)
+\]
+或$\theta_1=90^{\circ}$。
+
+
+不论D点落在那个区域，若B的极坐标为(100,$\beta$)，则未知点的定位坐标为(100$\times\frac{sin\theta_1}{sin\alpha_1}$,$\beta \pm$($\pi$-$\theta_1$-$\alpha_1$))（正负号的出现与B点和D点的相对位置有关）。
+
+
+当发射源无人机的点的位置确定时，每个区域内未知点定位坐标的旋转方向（即正负号）就已经确定，但由于$\theta_1$有四种不同的表达方式，故未知点仍有四个可能的坐标位置。 
+
+\subsubsubsection{最终位置的确定}
+
+由于s
+
+
+
+
+\end{document}
