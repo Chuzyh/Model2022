@@ -50,6 +50,14 @@ point add_ran(point now)
     ang+=rand_double()*0.052*3;
     return get_xy(radius,ang);
 }
+point add_ran(point now,double radio)
+{
+    double radius=len(now);
+    double ang=atan2(now.y,now.x);
+    radius+=rand_double()*5*radio/10;
+    ang+=rand_double()*0.052*radio/10;
+    return get_xy(radius,ang);
+}
 double Atan2(double y,double x)
 {
     if(y<0)return atan2(-y,-x);
