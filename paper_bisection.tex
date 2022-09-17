@@ -1,0 +1,77 @@
+\documentclass{ctexart}
+\usepackage{xcolor}
+\usepackage{setspace}
+\usepackage{tikz}
+\usepackage{ctex}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx} 
+\usepackage{subfigure}
+\usepackage{float}
+\usepackage{algorithm}  
+\usepackage{algorithmicx}  
+\usepackage{algpseudocode} 
+\usepackage{url}
+\usepackage{amsthm, amssymb, appendix, bm, graphicx, hyperref, mathrsfs}
+\usepackage{tabularx}
+\usepackage{booktabs} %需要加载宏包{booktabs}
+\usepackage{multirow}
+\usepackage{diagbox} % 加载宏包
+\usepackage{pifont}
+
+\usepackage{siunitx}
+\usepackage{listings}
+\usepackage{float}
+\pagestyle{plain}
+
+\usetikzlibrary{datavisualization}
+\usetikzlibrary{arrows,shapes,chains}
+\usepackage{listings}
+\lstset{language=C++}
+\lstset{breaklines}
+\lstset{extendedchars=false}
+\lstset{numbers=left}
+\geometry{a4paper,left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+\CTEXsetup[format={\Large\bfseries\centering}]{section}
+\tikzstyle{startstop} = [rectangle,rounded corners, minimum width=3cm,minimum height=1cm,text centered, text width=6cm,draw=black]
+\tikzstyle{io} = [trapezium, trapezium left angle = 70,trapezium right angle=110,minimum width=5cm,minimum height=1cm,text centered,draw=black,fill=white]
+\tikzstyle{process} = [rectangle,minimum width=3cm,minimum height=1cm,text centered,text width =3cm,text width=6cm,draw=black]
+\tikzstyle{decision} = [diamond,minimum width=3cm,minimum height=1cm,text centered,text width=6cm,aspect=2,draw=black,thin]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}  % Use Input in the format of Algorithm  
+\renewcommand{\algorithmicensure}{\textbf{Output:}} % Use Output in the format of Algorithm  
+\newcommand{\subsubsubsection}[1]{\paragraph{#1}\mbox{}\\}
+\setcounter{secnumdepth}{4} % how many sectioning levels to assign numbers to
+\setcounter{tocdepth}{4} % how many sectioning levels to show in ToC
+\begin{document}
+
+\section{模型假设}
+1. \quad 基于自身感知的高度信息，本文默认无人机均保持在同一个高度上飞行，即所有无人机在同一个平面上。
+
+2. \quad 假设第一问中的所有小问9架无人机理论上都应均匀分布在半径为100m的圆周上。
+
+3. \quad 假设无人机接收到的方向信息不存在误差。
+
+
+\subsection{问题一模型的建立与求解}
+
+
+  \subsubsection{二分移动路径法}
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\linewidth]{pic/bisection.eps}
+    \caption{二分移动路径法示意图}
+    \label{二分移动路径法示意图}
+    \end{figure}
+
+
+
+
+
+
+
+
+
+
+\end{document}
