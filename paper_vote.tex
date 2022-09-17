@@ -1,0 +1,109 @@
+\documentclass{ctexart}
+\usepackage{xcolor}
+\usepackage{setspace}
+\usepackage{tikz}
+\usepackage{ctex}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx} 
+\usepackage{subfigure}
+\usepackage{float}
+\usepackage{algorithm}  
+\usepackage{algorithmicx}  
+\usepackage{algpseudocode} 
+\usepackage{url}
+\usepackage{amsthm, amssymb, appendix, bm, graphicx, hyperref, mathrsfs}
+\usepackage{tabularx}
+\usepackage{booktabs} %需要加载宏包{booktabs}
+\usepackage{multirow}
+\usepackage{diagbox} % 加载宏包
+\usepackage{pifont}
+
+\usepackage{siunitx}
+\usepackage{listings}
+\usepackage{float}
+\pagestyle{plain}
+
+\usetikzlibrary{datavisualization}
+\usetikzlibrary{arrows,shapes,chains}
+\usepackage{listings}
+\lstset{language=C++}
+\lstset{breaklines}
+\lstset{extendedchars=false}
+\lstset{numbers=left}
+\geometry{a4paper,left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+\CTEXsetup[format={\Large\bfseries\centering}]{section}
+\tikzstyle{startstop} = [rectangle,rounded corners, minimum width=3cm,minimum height=1cm,text centered, text width=6cm,draw=black]
+\tikzstyle{io} = [trapezium, trapezium left angle = 70,trapezium right angle=110,minimum width=5cm,minimum height=1cm,text centered,draw=black,fill=white]
+\tikzstyle{process} = [rectangle,minimum width=3cm,minimum height=1cm,text centered,text width =3cm,text width=6cm,draw=black]
+\tikzstyle{decision} = [diamond,minimum width=3cm,minimum height=1cm,text centered,text width=6cm,aspect=2,draw=black,thin]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}  % Use Input in the format of Algorithm  
+\renewcommand{\algorithmicensure}{\textbf{Output:}} % Use Output in the format of Algorithm  
+\newcommand{\subsubsubsection}[1]{\paragraph{#1}\mbox{}\\}
+\setcounter{secnumdepth}{4} % how many sectioning levels to assign numbers to
+\setcounter{tocdepth}{4} % how many sectioning levels to show in ToC
+\begin{document}
+
+\section{模型假设}
+1. \quad 基于自身感知的高度信息，本文默认无人机均保持在同一个高度上飞行，即所有无人机在同一个平面上。
+
+2. \quad 假设第一问中的所有小问9架无人机理论上都应均匀分布在半径为100m的圆周上。
+
+3. \quad 假设无人机接收到的方向信息不存在误差。
+
+
+\subsection{问题一模型的建立与求解}
+
+  \subsubsection{投票机制模型的建立}
+
+  前文模型建立过程中，一个较大的误差来源为角度划分区间过于死板，虽这样划分能在得到方向信息后直接确定未知发射源的编号（对称两点），较为简易。但当接收点偏移位移较大时，如图所示。
+  
+  在这种情况下，本应是真正发射源的FY04，被误判成了FY05/FY06，导致错误。
+  
+  因此，我们决定在接收点的标准位置附近划定误差圆，通过误差圆来确定角度范围，但由于误差圆的半径选择依然较为主观，故我们选择用一系列大小不一的误差圆进行投票，以此确定未知发射源的编号。
+
+  \subsubsubsection{误差圆的构造}
+
+
+
+  \subsubsubsection{角度范围的求解}
+
+  \subsubsubsection{投票机制}
+
+    我们让每个接收点标准位置$I$为圆心的误差圆根据接收点得到的角度信息进行投票，根据票数多少选择最可能的发射源$F_1$。
+
+    设真实的发射源为$F_0$，则当接收点$J$得到了$\angle OJF_0$和$\angle PJF_0$的角度信息后，对于每个发射源$F$，它的得票数$vote_F$可由下列式子计算得到：
+\begin{equation}
+    vote_F=\mathop{\Sigma}\limits_{Q} [V_{Q,I,F,Omin} \le \angle OJF_0 \le V_{Q,I,F,Omax}][V_{Q,I,F,Pmin} \le \angle PJF_0 \le V_{Q,I,F,Pmax}]
+\end{equation}
+
+
+    即400个误差圆中，每个误差圆都根据接收点得到的角度信息是否在每个发射源对应的角度区间内，可以给最少$0$个（角度信息不在任何发射点对应的角度区间内），最多$7$个（角度信息在除了已知发射源$P$和接收点标准位置$I$的所有发射源对应的角度区间内）发射源投票，最后我们将票数最高的发射源作为$F_1$，即:\
+\begin{equation}
+ F_1=\mathop{\arg\min}\limits_{F} vote_F
+\end{equation}
+
+  \subsubsection{结果展示}
+
+  \subsubsection{进一步的优化}
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
