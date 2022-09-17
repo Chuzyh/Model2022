@@ -4,6 +4,7 @@ using namespace std;
 const double pi=acos(-1);
 const int N=20;
 const double eps=1e-8;
+const double INF=1e16;
 double radius=100;
 struct point
 {
@@ -57,6 +58,11 @@ point add_ran(point now,double radio)
     radius+=rand_double()*5*radio/10;
     ang+=rand_double()*0.052*radio/10;
     return get_xy(radius,ang);
+}
+point add_ran_on_circle_edge(point now,double radio)
+{
+    point delta=get_xy(radio,rand_double()*pi);
+    return now+delta;
 }
 double Atan2(double y,double x)
 {
