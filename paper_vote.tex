@@ -73,13 +73,13 @@
 
     我们让每个接收点标准位置$I$为圆心的误差圆根据接收点得到的角度信息进行投票，根据票数多少选择最可能的发射源$F_1$。
 
-    设真实的发射源为$F_0$，则当接收点$J$得到了$\angle OJF_0$和$\angle PJF_0$的角度信息后，对于每个发射源$F$，它的得票数$vote_F$可由下列式子计算得到：
+    设真实的发射源为$Ftrue_1$，则当接收点$J$得到了$\angle OJFtrue_1$和$\angle PJFtrue_1$的角度信息后，对于每个发射源$F$，它的得票数$vote_F$可由下列等式计算得到：
 \begin{equation}
-    vote_F=\mathop{\Sigma}\limits_{Q} [V_{Q,I,F,Omin} \le \angle OJF_0 \le V_{Q,I,F,Omax}][V_{Q,I,F,Pmin} \le \angle PJF_0 \le V_{Q,I,F,Pmax}]
+    vote_F=\mathop{\Sigma}\limits_{Q} [V_{Q,I,F,Omin} \le \angle OJFtrue_1 \le V_{Q,I,F,Omax}][V_{Q,I,F,Pmin} \le \angle PJFtrue_1 \le V_{Q,I,F,Pmax}]
 \end{equation}
 
 
-    即400个误差圆中，每个误差圆都根据接收点得到的角度信息是否在每个发射源对应的角度区间内，可以给最少$0$个（角度信息不在任何发射点对应的角度区间内），最多$7$个（角度信息在除了已知发射源$P$和接收点标准位置$I$的所有发射源对应的角度区间内）发射源投票，最后我们将票数最高的发射源作为$F_1$，即:\
+    即400个误差圆中，每个误差圆都根据接收点得到的角度信息是否在每个发射源对应的角度区间内，可以给最少$0$个（角度信息不在任何发射点对应的角度区间内），最多$7$个（角度信息在除了已知发射源$P$和接收点标准位置$I$的所有发射源对应的角度区间内）发射源投票，最后我们将票数最高的发射源作为$F_1$，即:
 \begin{equation}
  F_1=\mathop{\arg\min}\limits_{F} vote_F
 \end{equation}
@@ -87,10 +87,23 @@
   \subsubsection{结果展示}
 
   \subsubsection{进一步的优化}
-  
 
+  虽然投票机制令计算接收点位置错误的概率大大降低，但仍有$?????$，而其中大部分（$????$）是由于发射点编号确定出错导致的，故需要进一步优化模型，提高计算发射点编号的正确率。
 
+  考虑加入第二架位置编号的发射信号的无人机$Ftrue_2$，接收点$J$还将得到$\angle OJFtrue_2$和$\angle PJFtrue_2$的角度信息，那么我们可以给所有可能的发射源对投票，以确定最可能的发射源对$F_1,F_2$。
 
+  那么利用类似之前的投票方法，我们可以用以下等式计算每个点对的得票数：
+\begin{equation}
+\begin{split}
+    vote_{F,F^{'}}=\mathop{\Sigma}\limits_{Q} [V_{Q,I,F,Omin} \le \angle OJFtrue_1 \le V_{Q,I,F,Omax}][V_{Q,I,F,Pmin} \le \angle PJFtrue_1 \le V_{Q,I,F,Pmax}]\\
+    [V_{Q,I,F^{'},Omin} \le \angle OJFtrue_2 \le V_{Q,I,F^{'},Omax}][V_{Q,I,F^{'},Pmin} \le \angle PJFtrue_2 \le V_{Q,I,F^{'},Pmax}]
+\end{split}
+\end{equation}
+
+即400个误差圆中，每个误差圆都根据接收点得到的角度信息是否在每个发射源对应的角度区间内，可以给最少$0$对，最多$7*6=42$对发射源投票，最后我们将票数最高的发射源作为$F_1,F_2$，即:
+\begin{equation}
+ F_1,F_2=\mathop{\arg\min}\limits_{F,F^{'}} vote_{F,F^{'}}
+\end{equation}
 
 
 
