@@ -11,7 +11,7 @@ int main()
 {
     srand(time(0));
     for(int i=1;i<=9;i++)p[i]=get_xy(radius,40.0*(i-1)/360*2*pi),id[i]=i;
-    freopen("data3","w",stdout);
+    // freopen("data3","w",stdout);
     double mx=0;
     for(int i=1;i<=T;i++)
     {
