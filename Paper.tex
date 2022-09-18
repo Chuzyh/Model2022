@@ -59,6 +59,19 @@
 
 （4）转为考虑在锥形飞行编队中，类似三题一般地确定信号发射方案与队形调整方案，使得多次调整后机群队形变为所要求的锥形队列。
 
+\section{问题分析}
+\textbf{对于问题一：}问题一要求在发射信号的无人机位置无偏差且编号已知的情况下，对被动接收信号的无人机进行定位。将3架已知无人机（A、B、C）与1架未知无人机（D）的位置抽象化，对其几何图形进行分析。根据AB、AC的连线将整个平面分成区域，D点落在不同的区域即有不同的位置计算公式。由于在实际情况中，D点所在的区域是未知的，4个解均有可能，故我们选用离D点标准位置最近的点作为其真实位置。同时我们进一步探究了已知发射源的选取位置优劣性。
+
+\textbf{对于问题二：}题目要求利用若干编号未知的发射信号无人机实现定位。为了利用问题一中模型，考虑先确定发射信号无人机的编号，再调用问题一中模型求解。
+
+首先我们利用不同信号源无人机与待定位无人机形成的圆周角不尽相同，通过算得的该圆周角直接线性划分不同角度的信号、对应不同的信号来源无人机，建立了简单模型。
+
+进一步我们考虑待定位无人机在以理想位置为圆心的误差圆内，改变误差圆半径、计算不同半径下各可能信号源无人机形成的圆周角范围，再累积测得的真实角度落在各个信号源的角度范围的频次。通过上述类似投票的过程，选择出最可能的信号源编号。接着我们代入此编号无人机求解对应圆周角进行验证，若与测得的角度偏差超过限度，则认为编号确定错误。此时我们类似地再引入一架发射信号的无人机，重复上述过程同时投票选出一对无人机编号组合，再用新得到的信号源无人机的位置信息进行角度验证。我们可以递推地重复上述过程，逐步增加参与信号发射的无人机的架次，直至较好地符合测得的角度。
+
+\textbf{对于问题三：}选取$FY00$作为坐标原点，$FY01$作为基准无人机，通过二分法多次调整并发射信号测试ℹ，判断其他圆周上的无人机的方向，再通过解三角形得到其到坐标原点的距离。最后通过已确定位置的$FY02$和相关角度信息计算$FY01$的方向和距离，并一次调整令所有圆周上的无人机移动到标准位置附近。
+    
+\textbf{对于问题四：}选取$FY01$作为坐标原点，$FY05$作为基准无人机，用和问题三类似的方法确定除了$FY05$和$FY13$的位置信息，最后通过已确定位置的$FY02$和相关角度信息计算$FY05$和$FY13$的方向和距离，并全部调整到理想位置附近。
+
 
 \section{模型假设}
 1. \quad 基于自身感知的高度信息，本文默认无人机均保持在同一个高度上飞行，即所有无人机在同一个平面上。
@@ -330,14 +343,13 @@
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.5\linewidth]{pic/Rplot01.jpeg}
+  \includegraphics[width=0.55\linewidth]{pic/Rplot01.jpeg}
   \caption{不同发射源圆心角的报错频次图}
   \label{不同发射源圆心角的报错频次图}
   \end{figure}
 
 
 
-0
 故在进行发射源的选取时，可以尽可能多考虑圆心角为$40^{\circ}$的两个无人机作为发射源。
 
 
@@ -667,7 +679,7 @@ F_1=\mathop{\arg\min}\limits_{F} vote_F
 
   \begin{figure}[H]
     \centering
-    \includegraphics[width=0.40\linewidth]{pic/bisection.eps}
+    \includegraphics[width=0.55\linewidth]{pic/bisection.eps}
     \caption{二分移动路径法示意图}
     \label{二分移动路径法示意图}
     \end{figure}
@@ -697,7 +709,7 @@ b.极径的计算
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.35\linewidth]{pic/solution.eps}
+  \includegraphics[width=0.45\linewidth]{pic/solution.eps}
   \caption{三角形求解示意图}
   \label{三角形求解示意图}
   \end{figure}
@@ -760,7 +772,7 @@ $\Delta OW_1W_2$为两无人机在初始位置时形成的三角形，$\Delta OW
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.45\linewidth]{pic/share.jpg}
+  \includegraphics[width=0.55\linewidth]{pic/share.jpg}
   \caption{坐标系建立示意图}
   \label{坐标系建立示意图}
   \end{figure}
