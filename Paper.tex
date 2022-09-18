@@ -62,7 +62,7 @@
 
 假设9架无人机(编号FY01$\sim$FY09)均匀分布在一个半径为100m的圆周上。以编号FY00的无人机作为坐标原点，编号FY00与编号FY01之间的连线作为X轴，建立极坐标系如下图\ref{极坐标系示意图}。各个编号的标准坐标信息如下表：
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \includegraphics[width=0.40\linewidth]{pic/极坐标.jpg}
   \caption{极坐标系示意图}
@@ -90,7 +90,15 @@
 \subsubsection{定位模型的建立}
 题目要求在已知未知定位无人机与任意两架发射源无人机间连线的夹角后，给出未知定位无人机当前的所在位置。由于发射源无人机的位置是无偏差的，故它们间的距离同样为已知信息。对该问题进行几何分析：
 
-图中A、B、C三点为已知位置的发射源无人机（A为原点，B、C点在圆上按逆时针顺序排列），三点将平面区域划分为4各部分。D点为需要求解的无人机的位置，可能落在任意一个区域中。
+图中A、B、C三点为已知位置的发射源无人机（A为原点，B、C点在圆上按逆时针顺序排列），三点将平面区域划分为4各部分。D点为需要求解的无人机的位置，可能落在任意一个区域中。如下图\ref{区域划分示意图}所示：
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.40\linewidth]{pic/quadrant(1).eps}
+  \caption{区域划分示意图}
+  \label{区域划分示意图}
+  \end{figure} 
+
 
 其中，A、B和A、C间的距离均为半径r。已知的方向信息包含两个小角与小角组合形成的大角，实际有效信息仅含两个角度。为了方便计算，我们选择包含原点A的角度$\alpha_1$、$\alpha_2$以及发射源无人机间的夹角$\alpha_3$进行分析。
 
@@ -104,7 +112,7 @@
 
 若D点落在I区域，如图\ref{区域I典型图}，则:
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \includegraphics[width=0.40\linewidth]{pic/case1++.eps}
   \caption{区域I典型图}
@@ -141,7 +149,7 @@
 
 若D点落在III区域，如图\ref{区域III典型图}，则：
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \includegraphics[width=0.40\linewidth]{pic/case3+.eps}
   \caption{区域III典型图}
@@ -171,7 +179,7 @@
 
 (2)若$\alpha_1$、$\alpha_2$之间存在包含关系，即D点落在II、IV区域，两种可能性如图\ref{区域II典型图}\ref{区域IV典型图}所示；
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \begin{minipage}[t]{0.45\linewidth}
   \centering
   \includegraphics[height=5.5cm,width=5.5cm]{pic/case4.eps}
@@ -248,7 +256,7 @@
 
 经过相关计算，我们给出极径误差为$\pm 5m $，幅角误差为$\pm 3^{\circ}$，从而使得随机误差在10\%以内，且浮动区域约为一个方形，如图\ref{误差范围示意图}所示。
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \includegraphics[width=0.45\linewidth]{pic/error area.eps}
   \caption{误差范围示意图}
@@ -269,16 +277,16 @@
 
 运行三轮的数据基本保持稳定，具体结果如下图\ref{不同发射源圆心角的报错频次图}所示：
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
-  \includegraphics[width=0.75\linewidth]{pic/Rplot01.jpeg}
+  \includegraphics[width=0.5\linewidth]{pic/Rplot01.jpeg}
   \caption{不同发射源圆心角的报错频次图}
   \label{不同发射源圆心角的报错频次图}
   \end{figure}
 
 
 
-
+0
 故在进行发射源的选取时，可以尽可能多考虑圆心角为$40^{\circ}$的两个无人机作为发射源。
 
 
@@ -317,7 +325,7 @@
 
 在该情境下，测得的$38^{\circ}$落在了$[30,50)$划分区间，故由表可知其最可能的信号发射来源为FY03、FY08这一对无人机。
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \includegraphics[height=5.5cm,width=5.5cm]{pic/example_for_2.a.jpg}
   \caption{接收信号角度示意图}
@@ -331,9 +339,9 @@
 
 设需要判别的两个编号为$c_1$，$c_2$，其中$c_1+c_2=11$，在圆周上均匀分布着9个点，1个点为已知发射源FY01，2个点为可能发射源。这三个点上无人机的位置不存在偏差，根据对称特性，2个可能发射源与FY01中相隔点的数量相同，将这些相隔点定义为区内点。除去这三类点后，圆周上一定还存在偶数个点，并将这些点定义为区外点，具体定义如下图\ref{点的定义图}。接收信号的无人机的真实位置与这些点略有偏差。
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
-  \includegraphics[width=0.75\linewidth]{pic/regional_points.eps}
+  \includegraphics[width=0.55\linewidth]{pic/regional_points.eps}
   \caption{点的定义图}
   \label{点的定义图}
   \end{figure}
@@ -343,7 +351,7 @@
 
 为了更清晰地进行阐释，下面给出了两个典型情况的举例（左图为接收点在区内点附近，右图为接收点在区外点附近）。设接收点为FY02/FY06附近略有偏差的点，可能发射源为FY03和FY08。令FY00所在点为O，FY01为P，可能发射源分别为$F_1$、$F_2$，接收点为J，如下图\ref{区内点情况}\ref{区外点情况}所示。
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \begin{minipage}[t]{0.45\linewidth}
   \centering
   \includegraphics[height=5.5cm,width=5.5cm]{pic/error_circle1(1).eps}
@@ -385,7 +393,7 @@
 
 两类错误的具体报错概率如下图\ref{两类错误报错概率折线图}所示:
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \center
   
   \subfigure[两类错误整体趋势]{
@@ -423,7 +431,7 @@
 
   前文模型建立过程中，一个较大的误差来源为角度划分区间过于死板，虽这样划分能在得到方向信息后直接确定未知发射源的编号（对称两点），较为简易。但当接收点偏移位移较大时，如图\ref{错误判断编号示例}所示。
   
-  \begin{figure}[htbp]
+  \begin{figure}[H]
     \centering
     \includegraphics[width=0.35\linewidth]{pic/error.eps}
     \caption{错误判断编号示例}
@@ -444,7 +452,7 @@
 
 在求解两函数的变化区间时，可将问题考虑为一圆心在给定弦中垂线上变动，求变动的圆中该弦对应的圆周角的大小范围的等价命题。因为对给定弦，其所在的圆半径越大，对应的圆周角越小；因此当该动圆变动到恰与误差圆外切、内切时，半径取到最小、最大值，角度大小也相应取到最值。如在求解$\angle PJF$大小范围时，取最值的具体情形见下图：
 
-  \begin{figure}[htbp]
+  \begin{figure}[H]
     \begin{minipage}[t]{0.45\linewidth}
     \centering
     \includegraphics[height=5.5cm,width=5.5cm]{pic/angle_max.eps}
@@ -548,7 +556,7 @@ F_1=\mathop{\arg\min}\limits_{F} vote_F
 
 为了验证模型正确性，我们用和上文角度区间定位模型与投票机制模型的模拟方法相同的模拟方式进行模拟。将三种模型的报错情况作图\ref{三种模型报错概率折线图}如下：
 
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.60\linewidth]{pic/三类比较.png}
     \caption{三种模型报错概率折线图}
@@ -598,7 +606,25 @@ F_1=\mathop{\arg\min}\limits_{F} vote_F
 结合各轮次信息，对除FY00、FY01外的无人机J，在$\Delta JOP$中即可求得圆心角。
 
 \subsubsection{二分移动路径法}
+
+首先我们需要确定圆周上的每架无人机到原点的连线和x轴的夹角大小，现在以编号为$FY02$的无人机为例说明如何确定该夹角大小。
+
+  设$FY1,FY2$分别为$FY01$和$FY02$的理想位置，$FY1^{'},FY2^{'}$分别为$FY01$和$FY02$的真实位置，坐标原点为$O$,则$\alpha$为$OFY1^{'}$和$OFY2^{'}$两边的初始夹角。设$FY2^{''}$是$FY02$调整后的位置，则$\alpha^{'}$为$OFY1^{'}$和$OFY2^{''}$的夹角。
+  若有$\alpha = \alpha^{'}$，说明$FY2^{''}$在$OFY2^{'}$的延长线上。令$FY2^{''}$在以$FY2^{'}$为圆心，常数$r$(具体实现时设置为$1m$)为半径的圆上调整。尽管我们初始时无法知道$FY2^{'}$的精确位置，但通过$r$和$\theta$容易计算$FY2^{'}$到$FY2^{‘'}$的变化量，故可以使用形式为$(\Delta x,\Delta y)$的调整指令使无人机在圆周上调整。
+  
+  设$FY2^{''}FY2^{'}$与x轴的夹角为$\theta$，则$\theta$和$\alpha^{'}$之间存在一个函数映射关系$\alpha^{'}=f(\theta)$，那么$FY2^{'}$的方向确定问题就转化为了$\alpha=f(\theta)$的方程求解问题。根据$FY02$的理想位置划定$\theta$的大致区间$[40^{\circ}-20^{\circ},40^{\circ}+20^{\circ}]$后，不难发现在此范围内$f(\theta)$是单调的，那么我们就可以使用二分法求解$\alpha=f(\theta)$。
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.40\linewidth]{pic/bisection.eps}
+    \caption{二分移动路径法示意图}
+    \label{二分移动路径法示意图}
+    \end{figure}
+
+
+    我们可以对其他编号的无人机根据其理想位置确定不同的$\theta$范围，在各自的范围内分别二分移动路径，最终确定各自位置到原点的连线和x轴的夹角大小。
 \subsubsection{结果求解}
+
 当二分移动结束后，可以通过前几次移动的方案求出该编号无人机当前所在的位置。位置坐标在极坐标系下表示，极坐标系的极轴与原平面直角坐标系的x轴重合。
 
 a.幅角的计算
@@ -620,7 +646,7 @@ b.极径的计算
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.45\linewidth]{pic/solution.eps}
+  \includegraphics[width=0.35\linewidth]{pic/solution.eps}
   \caption{三角形求解示意图}
   \label{三角形求解示意图}
   \end{figure}
@@ -652,16 +678,18 @@ $\Delta OW_1W_2$为两无人机在初始位置时形成的三角形，$\Delta OW
   \Delta b=\sqrt{(\sum_{i=1}^{N}\Delta X_{i,2})^2+(\sum_{i=1}^{N}\Delta Y_{i,2})^2}
 \]
 则$W_1$无人机现在所在的位置$W_1^{'}$的极径为a+$\Delta a$，$W_2$无人机现在所在的位置$W_2^{'}$的极径为b+$\Delta b$。
-\subsection{结果展示}
+
+获得所有无人机在极坐标系上的坐标后，即可将其按照理想位置一步移动到位。
+\subsubsection{结果展示}
 为使二分法尽可能精确（控制幅角误差在$10^{-6}$左右），我们设定整个流程循环20次，即共经历21轮次信号发射，其中每轮次包含4次不同发射源的信号发射。故至多需要84次不同发射源的信号发射，即可实现有效定位。
 
 题目要求无人机在最终需调整到理想位置，使得9架无人机最终均匀分布在圆周上。本文将理想位置设定为如表1所示的标准坐标。
-\subsubsection{方案展示}
+\subsubsubsection{方案展示}
 由于方案中信号发射的次数较多，故完整方案无法在正文中展示，而放于附录中。方案包括每一轮发射源的选择以及各编号无人机的移动距离。
 
 计算发现，累积误差（9个点求解位置与理想位置的距离和）为0.000160328m，说明求解效果良好。
 
-\subsubsection{模型的进一步检验}
+\subsubsubsection{模型的进一步检验}
 由于题中所给的初始点的位置相较理想位置的误差较小，故为了对模型进行更好的检验，我们考虑扩大误差观察求解效果。
 
 将误差限扩大到30\%（即极径误差为$\pm 15m $，幅角误差为$\pm 9^{\circ}$）进行模拟。
@@ -669,6 +697,80 @@ $\Delta OW_1W_2$为两无人机在初始位置时形成的三角形，$\Delta OW
 模拟方法为：在9个理想位置附近各框定30\%的误差区域，每一个误差区域中随机选取一个点作为该区域编号无人机的初始位置。将其作为输入代入求解具体调整方案。
 
 模拟1000000次的试验后，我们发现累积误差均控制在$10^{-3}$m以内，说明在误差较大的情况下也能进行较优的求解，使9个偏移位置点移动到标准位置。
+
+\subsection{问题四的分析解决}
+我们尝试将求解问题三的方法推广运用到问题四中。考虑在锥形编队情景下，仍选取一对无人机位置固定不动、形成一条固定的信号边；对其他无人机尝试移动时，寻找控制其与该边夹角不变的移动方向，即可得到其初始位置与坐标轴的方向角。具体实现过程中，仍可沿用三题中所述的二分查找方法，通过在一小段轨迹圆弧中不断尝试来得到所求方向。
+
+\subsubsection{坐标轴的建立与测量基准点无人机的选取} 
+
+建立坐标轴的整体考量与问题三类似：选取FY01作为坐标原点；假定图中机群机头朝向为其前进方向，定为x轴正方向，再以右手螺旋形式建立y轴即可，如图\ref{坐标系建立示意图}所示。验证知在该坐标系中各无人机的位置均能较简洁地表示出来，坐标系建立合理。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.45\linewidth]{pic/share.jpg}
+  \caption{坐标系建立示意图}
+  \label{坐标系建立示意图}
+  \end{figure}
+
+首先我们考虑固定FY01作为测量基准点。因为FY01处于编队的顶角位置，其他无人机均在其周围一个较小的角度范围内，能使测量得到的角度在一个大小合理的角度区间。接着我们考虑固定FY05作为另一基准点。因为大部分无人机均对称分布在FY01-FY05轴线两侧，能保证后续二分时大部分点所取的轨迹区间使得其与固定边的夹角单调变化，
+即使问题拥有可二分性。
+
+同时初始轮次二分进行各个无人机方位角的测定时，FY13虽不是基准点、但也先固定不动。这是考虑到FY13位于上述选定的FY01-FY05轴线附近，所选取的查找轨迹区间可能穿越轴线，使其丧失了用于二分的角度单调性，不能得到其方向角的真实值。我们将在后续轮次中单独考虑为FY13定位的问题。
+
+\subsubsection{二分移动路径法}
+在锥形编队队形下，我们可以通过控制其他无人机到$FY01$的连线与$FY01FY05$这条边的夹角大小，二分确定其他无人机的方向，具体二分方法和问题一的第3小问的方法类似，但由于$FY01$可以作为接收点，我们可以直接得到夹角的角度信息，而不是通过三角形内其他两个角的角度，间接计算夹角。
+
+\subsubsection{结果求解}
+
+由上文阐述的发射信号与移动方案可知，在二分循环中FY01、FY05、FY13均未移动。将15架无人机的当前位置分成三类计算：
+
+（1）FY01编号无人机为测量基准点，假设其初始位置即为标准位置，则其当前位置为原点(0,0)；
+
+（2）除FY01、FY05、FY13这三个点外，其余点按第三问中的方式进行求解。其中:
+
+a.幅角计算公式
+\[
+  \theta=arctan(\frac{\sum_{i=1}^{N}\Delta Y_i}{\sum_{i=1}^{N}\Delta X_i})
+\]
+
+b.极径的计算
+
+选取FY01，FY05以及所需求解的点的位置解三角形，即在图\ref{三角形求解示意图}的情况下，令$\Delta b$=0。
+
+故极径的计算公式为：
+
+\begin{equation}
+              a=\frac{\Delta a}{\frac{sin\alpha_2\cdot sin\beta_1}{sin\alpha_1\cdot sin\beta_2}-1}\\
+\end{equation}
+
+则$W_1$无人机现在所在的位置$W_1^{'}$的极径为a+$\Delta a$。
+
+（3）FY13编号的无人机由于无法用二分法求解的限制，需要借助其他手段进行位置求解。
+
+
+再发射一次信号，分别为FY01(O)，FY13(Q)以及在X轴上方的无人机（例如FY02(P)），得到相应的方向信息$\angle POQ$。
+
+a.幅角的计算
+
+由于P点与X轴的夹角已知，P点与Q点的夹角已知，且Q点在P点的逆时针方向，故幅角计算公式为：
+
+\begin{equation}
+  \theta_Q=\theta_P-\angle POQ
+\end{equation}
+
+b.极径的计算
+
+由于P点与原点间的距离已知，故应用正弦定理可知Q点的极径：
+
+\[
+  OQ=OP\times \frac{sin \angle OPQ}{sin\angle OQP}
+\]
+
+获得所有无人机在极坐标系上的坐标后，即可将其按照理想位置一步移动到位。
+
+\subsubsection{结论说明}
+
+FY13不能动，导致偏差范围，最大移动次数...
 
 
 
