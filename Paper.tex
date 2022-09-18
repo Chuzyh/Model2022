@@ -894,7 +894,88 @@ b.极径的计算
   \bibitem{article1} 赵骁飞. 单站纯方位无源探测定位的若干技术的研究[D].上海交通大学,2007.
 \end{thebibliography}
 
+\newpage
+\begin{flushleft}
+    \Large{ \textbf{附录}}
 
+    ~\\
+
+    \normalsize \textbf{附录说明:}
+
+    1,\textbf{readme}：支撑文件说明
+    
+    2,\textbf{geometry.h}：其他程序需要的几何相关的头文件
+
+    3,\textbf{task1.cpp}：对问题一的模型进行多次模拟验证，输出报错统计信息 
+
+    4,\textbf{task2\_simple.cpp}：对问题二的角度区间定位模型进行多次模拟验证，输出需要定位的点在不同误差范围下的报错统计信息
+
+    5,\textbf{task2\_vote.cpp}：对问题二的投票机制模型进行多次模拟验证，输出报错统计信息
+
+    6,\textbf{task2\_vote2.cpp}：对问题二的二轮投票模型进行多次模拟验证，输出报错统计信息
+
+    7,\textbf{task3\_sample.cpp}：对问题三中题目给出的初始情况使用我们的模型进行方案求解，输出方案，调整结果和累积误差
+
+    8,\textbf{task3\_sim.cpp}：对问题三的模型进行多次模拟验证，输出累积误差和统计信息。
+    
+\definecolor{mygreen}{rgb}{0,0.6,0}  
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}  
+\definecolor{mymauve}{rgb}{0.58,0,0.82}  
+  
+\lstset{ %  
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}  
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code  
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace  
+  breaklines=true,                 % sets automatic line breaking  
+  captionpos=bl,                    % sets the caption-position to bottom  
+  commentstyle=\color{mygreen},    % comment style  
+  deletekeywords={...},            % if you want to delete keywords from the given language  
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code  
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8  
+  frame=single,                    % adds a frame around the code  
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)  
+  keywordstyle=\color{blue},       % keyword style  
+  %language=Python,                 % the language of the code  
+  morekeywords={*,...},            % if you want to add more keywords to the set  
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)  
+  numbersep=5pt,                   % how far the line-numbers are from the code  
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers  
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))  
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'  
+  showstringspaces=false,          % underline spaces within strings only  
+  showtabs=false,                  % show tabs within strings adding particular underscores  
+  stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered  
+  stringstyle=\color{orange},     % string literal style  
+  tabsize=2,                       % sets default tabsize to 2 spaces  
+  %title=myPython.py                   % show the filename of files included with \lstinputlisting; also try caption instead of title  
+}  
+
+1,\textbf{readme}：
+\lstinputlisting[language=C++]{support/readme}
+
+2,\textbf{geometry.h}：
+\lstinputlisting[language=C++]{support/code/geometry.h}
+
+3,\textbf{task1.cpp}：
+\lstinputlisting[language=C++]{support/code/task1.cpp}
+
+4,\textbf{task2\_simple.cpp}：
+\lstinputlisting[language=C++]{support/code/task2_simple.cpp}
+
+5,\textbf{task2\_vote.cpp}：
+\lstinputlisting[language=C++]{support/code/task2_vote.cpp}
+
+6,\textbf{task2\_vote2.cpp}：
+\lstinputlisting[language=C++]{support/code/task2_vote2.cpp}
+
+7,\textbf{task3\_sample.cpp}：
+\lstinputlisting[language=C++]{support/code/task3_sample.cpp}
+
+8,\textbf{task3\_sim.cpp}：
+\lstinputlisting[language=C++]{support/code/task3_sim.cpp}
+
+
+\end{flushleft}
 
 
 
