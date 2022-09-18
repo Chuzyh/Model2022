@@ -14,6 +14,7 @@ void move(int p,point del)
 }
 int main()
 {
+    freopen("task3_sample_data","w",stdout);
     int n=9;double radius=100;
     for(int i=1;i<=n;i++)
     {
@@ -53,7 +54,6 @@ int main()
     }
     L[1]=R[1]=(L[2]+R[2])/2-ang[2];
 
-    double sum_err=0;
     for(int i=1;i<=9;i++)
     {
         th[i]=(L[i]+R[i])/2;
@@ -65,8 +65,9 @@ int main()
         ri[i]=b;
     }
     for(int i=1;i<=9;i++)move(i,get_xy(ri[i],th[i])-s[i]);
-    for(int i=1;i<=9;i++)s[i].out(),(p[i]-la[i]).out();
-
+    double sum_err=0;
+    for(int i=1;i<=9;i++)s[i].out(),(p[i]-la[i]).out(),sum_err+=len(s[i]-p[i]+la[i]);
+    cout<<sum_err<<endl;
     return 0;
 }
 
